@@ -72,6 +72,24 @@ wiki facts (`JARVIS_NO_RELOAD`, `kickstart`, `.venv`, `3.9`, `launchctl`,
 training data. Summary pushed to Tristan via `send_telegram`. Phase 1 is
 functionally complete.
 
+## [2026-05-20] ingest | Phase 4 shipped — journal distillatie (loop closure)
+Nieuwe Valentina-only tool `distill_recent_journals(window_hours=48,
+max_proposals=3)`. Sluit de loop: Phase 2-journals accumuleren → Phase 4
+distilleert patronen → Phase 3 zet ze als voorstellen in de queue.
+
+Implementatie: `wiki.collect_recent_journals(window, cap=60KB)` leest alle
+agent-journals binnen het venster (tail-truncatie bij grote corpora).
+Dispatch promptet Anthropic met de huidige wiki-index + corpus, parseert
+JSON-output ({proposals: [{target, heading, content, rationale}]}), valideert
+elk voorstel (whitelist services/concepts/decisions/incidents + existence-
+check — v1 is append-only, dus geen new_page voorstellen). Stage'd via
+`wiki.stage_proposal` zoals een gewone propose_wiki_edit aanroep.
+
+On-demand only in v1 — geen cron-worker. Smoke-test toonde dat de tool
+correct "geen patronen" returnt bij thin journals (één Sara-entry), maar
+ook 2 echte voorstellen produceert wanneer er materiaal is. Bewust voice-
+gated naar Valentina (Jarvis/Zoë/Sara zien de tool niet).
+
 ## [2026-05-20] ingest | Phase 3.5 shipped — Tristan + Valentina commanderen het dev-team (met interruptie)
 Single-task-at-a-time model: nieuwe `devteam.submit()` cancelt eerst alle nog-
 lopende taken via coöperatieve cancellation (per-task `threading.Event` +
