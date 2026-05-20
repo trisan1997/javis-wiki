@@ -313,3 +313,35 @@ Proposer: steve_jobs. Approver: tristan. Reden: outdated — Valentina/Zoë bugs
 
 ## [2026-05-20] wiki-reject | proposal 48897c3a8c36
 Proposer: steve_jobs. Approver: tristan. Reden: outdated — duplicate van 41859de44fa9; zelfde bugs zijn al gefixt..
+
+## [2026-05-20] ingest | Prompt 4 (backend) — quote-persistence + invoicing + CORS + admin endpoints
+Backend-fundamenten voor de publieke offerte/facturatie flow op
+thehandycompany.be (Optie B — one.com statisch frontend + Tailscale Funnel
+API). Frontend en Funnel-enable volgen in een volgende sessie.
+
+Nieuwe modules:
+- `src/quotes.py` — persistente quote-opslag in `config/quotes.json`
+  (gitignored). add/list_all/get/update/mark_status. Hook in
+  `tools._create_and_send_quote` schrijft elke offerte ook persistent weg
+  + markeert hem als `status="sent"`.
+- `src/invoicing.py` — facturatie met jaarsequentiële nummering
+  (`INV-YYYY-NNNN`). `create_from_quote()` rekent BTW 21%, rendert HTML-
+  snapshot in `static/invoice_<nr>.html`, linkt heen-en-weer met de quote.
+  Status: `draft → sent → (paid | overdue | cancelled)`. `paid` is read-only.
+  Dubbele facturatie geblokkeerd.
+
+Server-side: CORS-middleware voor `https://thehandycompany.be`,
+BasicAuth exempt nu ook `/api/public/*` + OPTIONS preflights.
+
+Admin endpoints (director-token gated): 6 routes in office.py voor
+quotes (list/get/update) + invoices (list/get/from-quote/update/paid).
+
+Gitignore extensions: alle customer-data uit git (quotes.json,
+invoices.json, *-counter.json, static/invoice_*.html, static/quote_preview.html).
+
+Smoke-test groen: end-to-end flow van quote-add → invoice-create
+(INV-2026-0001 met BTW 21% van 435.60 = 91.48, totaal 527.08) →
+mark_paid persisteert correct. Live na kickstart (PID 77604).
+
+Niet in deze turn: publieke `/api/public/offerte` route, statisch frontend
+voor one.com, Tailscale Funnel enablen. Backend is klaar om die laag te dragen.
