@@ -1,12 +1,16 @@
 ---
 title: thehandycompany.be — publieke website-architectuur
 type: decision
-status: planned
+status: decided
 date: 2026-05-20
 updated: 2026-05-20
 sources: 0
-tags: [decision, hosting, dns, tailscale, one.com, public, planned]
+tags: [decision, hosting, dns, tailscale, one.com, public]
 ---
+
+> **Beslissing (2026-05-20, Tristan): Optie B — split frontend op one.com + Tailscale Funnel API.**
+> Implementatie staat ingepland voor Prompt 4. CORS, Funnel-enable en
+> statisch frontend zijn de drie deliverables die nog ontbreken.
 
 # Decision — Publieke website-architectuur voor thehandycompany.be
 

@@ -127,6 +127,38 @@ Approval has THREE channels, all applying the same atomic write:
 approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
 Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.
 
+## [2026-05-20] decision | Optie B gekozen voor publieke architectuur
+Tristan koos Optie B uit [[2026-05-20-public-website-architecture]]: split
+frontend op one.com + Tailscale Funnel API. Status verschoven van planned
+naar decided. Implementatie staat ingepland voor Prompt 4 (publieke
+offerte + facturatie). Drie deliverables: CORS-middleware, `tailscale funnel
+--bg 443` enablen, statisch frontend bouwen + FTP-deploy.
+
+## [2026-05-20] ingest | Prompt 2 shipped — leren uit fouten (flag_mistake + correctie-capture)
+Sluit de leerlus voor fouten. Drie samenhangende stukken:
+
+(1) **Expliciet**: nieuwe tool `flag_mistake(what_i_did, what_was_wrong,
+lesson)` beschikbaar voor alle interactieve agents. Slaat op in journal
+als 'MISTAKE: ...' regel met gestructureerde body.
+
+(2) **Impliciet**: `_maybe_capture_correction(session_id, voice, user_msg)`
+in `src/server.py` draait vóór elke chat-turn én elke `_tg_run_agent`-turn.
+Regex-detectie van user-correcties (8 patterns NL+EN: 'nee dat klopt niet',
+'ik bedoelde', 'no that's wrong', etc.). Bij hit: vorige assistant-turn +
+correctie-tekst → MISTAKE-entry in agent's journal. Best-effort; mag chat
+nooit breken.
+
+(3) **Distillatie aangepast**: meta-prompt in `tools.execute(
+"distill_recent_journals", ...)` zoekt nu expliciet naar 'MISTAKE:' regels
+en stelt voor om patronen vast te leggen als 'common pitfalls' secties of
+nieuwe constraints in self-pages.
+
+Cost: nul extra Anthropic-calls voor de capture zelf (regex is lokaal).
+Distillatie kost zelfde als Phase 4 — alleen het meta-prompt is iets langer.
+
+Smoke-test: 8/8 positives + 4/4 negatives op regex, flag_mistake direct
++ via dispatch, end-to-end correction capture met opgeschoonde test-entries.
+
 ## [2026-05-20] ingest | Prompt 1 (deel 1) — persistente conversation history (SQLite)
 Lost het Phase 2 open-issue op: `histories` in `src/server.py:99` was in-
 memory dict die bij elke launchd-kickstart stierf. Vervangen door SQLite
