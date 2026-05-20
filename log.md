@@ -127,6 +127,35 @@ Approval has THREE channels, all applying the same atomic write:
 approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
 Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.
 
+## [2026-05-20] ingest | Prompt 1 (deel 1) — persistente conversation history (SQLite)
+Lost het Phase 2 open-issue op: `histories` in `src/server.py:99` was in-
+memory dict die bij elke launchd-kickstart stierf. Vervangen door SQLite
+in nieuwe module `src/conversations.py` (~110 lines): `append`, `recent`,
+`clear`, `session_count`, `db_path`. WAL-mode + connection-per-call voor
+thread-safety. Schema lazy-init bij eerste call.
+
+Server.py 6 plekken gepatcht: declaratie compat-shim, `/api/chat` read+
+trim+write, `DELETE /api/chat/{id}`, `_tg_run_agent` read+trim+write.
+HISTORY_LIMIT trim-logica weg — SQLite handelt grootte gewoon. Telegram-
+`tg-<voice>` keys werken hetzelfde als chat session_ids (één tabel,
+verschillende prefixes).
+
+DB-file: `~/javis 2.0/conversations.db` (16KB na init). Gitignored.
+
+Smoke-test: append+recent round-trip, limit-parameter, clear, empty
+session_id safe-ignore, persistence over module-reload — allemaal groen.
+Live geverifieerd na kickstart (server start schoon op, DB autom. aangemaakt).
+
+## [2026-05-20] decision | thehandycompany.be publieke architectuur (planned)
+Nieuwe decision-pagina [[2026-05-20-public-website-architecture]]. Drie
+opties geanalyseerd voor publieke toegang vanuit klanten:
+- A: Tailscale Funnel + DNS-CNAME (cert-mismatch probleem)
+- B: Split — one.com statisch frontend + Tailscale Funnel API (mijn voorkeur)
+- C: Cloudflare Tunnel (nieuwe vendor, sterkste cert-story)
+
+Status=planned tot Tristan kiest. Prompt 4 (publieke offerte/facturatie)
+hangt hier vanaf.
+
 ## [2026-05-20] ingest | Phase 7 shipped — auto-distill cron (wiki groeit autonoom)
 Verwijdert de laatste handmatige trigger uit de pipeline. Achtergrond-worker
 in `src/autonomy.py` plant dagelijks **04:00 lokaal** een Valentina-led
