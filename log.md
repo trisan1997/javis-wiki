@@ -126,3 +126,30 @@ Approval has THREE channels, all applying the same atomic write:
 (3) Valentina via `approve_wiki_proposal` tool (voice-gated; cannot self-
 approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
 Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.
+
+## [2026-05-20] ingest | Phase 5 shipped — expanded change_types (new_page + replace_section)
+Heffen van de append-only beperking. `propose_wiki_edit` ondersteunt nu drie
+`change_type`s: `append_section` (zoals voorheen), `new_page` (creëer nieuwe
+pagina, target mag niet bestaan), en `replace_section` (vervang bestaande
+sectie geïdentificeerd via heading-tekst, case-insensitive). Distillatie kan
+nu dus ook nieuwe pagina's en correcties voorstellen — Phase 4-bug waar
+Valentina `concepts/shared-brain` wou aanmaken is opgelost.
+
+Backups: elke apply die een bestaande pagina raakt schrijft eerst de oude
+versie naar `.bak/<slug>.<timestamp>.bak` (gitignored). Reversibility zonder
+git.
+
+Implementatie:
+- `wiki.stage_proposal` herschreven met optionele `change_type` en
+  `section_heading` parameters. Per-type validatie (new_page weigert
+  bestaande targets; replace_section weigert ontbrekende targets).
+- `wiki.apply_proposal` route nu naar `_apply_append_section`,
+  `_apply_new_page`, of `_apply_replace_section`. Backup vóór elke wijziging
+  via `_backup_target`. Replace zoekt heading regex case-insensitief en
+  bepaalt section-einde via volgende heading van gelijk-of-lager level.
+- `tools.py` `propose_wiki_edit` schema uitgebreid met `change_type` enum
+  en `section_heading` veld. Distill-prompt updated zodat Valentina nu alle
+  drie types kan voorstellen.
+
+Smoke-test: alle 6 paden (3 happy + 3 edge cases) groen — zie javis-2.0
+commit voor de details.

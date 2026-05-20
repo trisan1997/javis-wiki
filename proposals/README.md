@@ -4,9 +4,13 @@ Agent-staged wiki-edit proposals, awaiting approval (Phase 3 of shared-brain).
 
 ## How it works
 
-1. **Agent stages** a proposal via `propose_wiki_edit(slug, heading, content, rationale)`.
+1. **Agent stages** a proposal via `propose_wiki_edit(slug, change_type, heading, section_heading, content, rationale)`.
    - Saved here as `<12-hex-id>.md` with frontmatter (`status: pending`).
-   - **v1 supports `append_section` only** — proposals add a new section to an existing curated page; they never replace or delete.
+   - **Three `change_type`s** (Phase 5):
+     - `append_section` — add a new H3 section to an EXISTING page (default).
+     - `replace_section` — replace an existing section, identified by its heading text. Used to correct misinformation rather than just adding.
+     - `new_page` — create a NEW page (target must not exist). Body auto-wrapped with minimal frontmatter if proposer didn't supply their own.
+   - Backups: any apply that modifies an existing page writes a copy of the old version to `.bak/<slug>.<timestamp>.bak` (gitignored).
 2. **Approval** can come from three channels (each applies the same atomic write):
    - **Tristan via HQ panel**: `GET /api/hq/wiki-proposals`, `POST /api/hq/wiki-proposal/apply` (director-token).
    - **Tristan via Telegram**: send `wiki apply <id>` or `wiki skip <id>` in chat `7855958540`.
@@ -52,9 +56,9 @@ reject_reason:           # added on reject (optional)
 <markdown body the agent wants appended>
 ```
 
-## Why no replace/delete in v1
+## Why no `delete_section` (yet)
 
-Append-only is safe and reversible (just edit the file to remove the added
-section). Replace and delete operations need diff-format proposals, which are
-LLM-fragile and risk silent info loss. Deferred to Phase 3.5 if real usage
-shows they're needed.
+Phase 5 supports append, replace, and new_page — covering 95% of real wiki
+maintenance. Pure deletes (remove a section, leaving the rest of the page
+intact) are rare in practice (replace with a smaller version usually works)
+and add another safety surface. Deferred until real usage shows it's needed.
