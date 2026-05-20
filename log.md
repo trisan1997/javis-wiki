@@ -159,6 +159,42 @@ Distillatie kost zelfde als Phase 4 — alleen het meta-prompt is iets langer.
 Smoke-test: 8/8 positives + 4/4 negatives op regex, flag_mistake direct
 + via dispatch, end-to-end correction capture met opgeschoonde test-entries.
 
+## [2026-05-20] ingest | Prompt 6 shipped — universele commando-dispatch
+Elke agent (incl. dev-team) is nu direct adresseerbaar via Telegram met
+zijn eigen tool-use loop, en team-leads kunnen delegeren via een nieuwe
+`assign_to_teammate` tool. Vier veranderingen:
+
+**1. Dev-team direct adresseerbaar.** `Steve, refactor X` / `Nick, ...` /
+`Siebert, ...` route nu naar hun eigen tool-use loop in `_tg_run_agent`
+(niet meer alleen via `dev: <opdracht>` collectief). `_TG_NAME_RE`
+uitgebreid met `steve|steve_jobs|steve_job's|nick|siebert`. Label-map
+uitgebreid met de drie devs.
+
+**2. Nieuwe DEVTEAM_MEMBER_TOOLS lijst** = `_SHARED + _WIKI_TOOLS +
+[_TEAMLEAD_TOOL]` (15 tools). Geen mail/calendar (niet hun werk), geen
+quote-tools (Jarvis-only). Centralized via nieuwe `_tools_for_voice()`
+helper die de oude if/elif-keten op 4 plekken vervangt.
+
+**3. assign_to_teammate tool** (voice-gated). Valentina mag iedereen
+behalve zichzelf delegeren; Steve_Job's alleen Nick of Siebert.
+Interne aanroep van `_tg_run_agent(target, task)` — teammate doet zijn
+eigen tool-use loop, antwoord komt terug als tool-result aan de lead.
+
+**4. Recursion guard via `threading.local()` _recursion_local`** —
+maximaal 2 niveaus delegatie (lead → teammate, geen verdere ketens).
+Voorkomt oneindige loops.
+
+**Bonus: team-prefix syntax** `team:dev <opdracht>` in Telegram —
+alias voor de bestaande `dev: ...` dispatch. Toekomstige teams
+(adverteam, boekhouding) worden hier toegevoegd zodra ze bestaan
+(zie Prompt 2 — adverteam/louche boekhouder/adviseur).
+
+**Autonomy-light gate**: dev-team voices kregen voorheen geen wiki-
+preload omdat autonomy._gen() ze ook gebruikt voor 1-zins whispers
+(kosten). Nu: preload ALLEEN als `active_voice == voice` (set door
+server.py's tool-use wrappers). Whispers blijven lean (~1KB), tool-use
+turns krijgen volledige preload (~4-5KB).
+
 ## [2026-05-20] ingest | Prompt 1 (deel 1) — persistente conversation history (SQLite)
 Lost het Phase 2 open-issue op: `histories` in `src/server.py:99` was in-
 memory dict die bij elke launchd-kickstart stierf. Vervangen door SQLite
