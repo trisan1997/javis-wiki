@@ -19,7 +19,7 @@ dev-team), and the [[habbo-hq|virtual office]] at `/`.
 - Pattern: see [[always-on-launchd]]. `RunAtLoad` + `KeepAlive`.
 - Entrypoint: `scripts/start.sh` with env `JARVIS_NO_RELOAD=1` (service mode disables uvicorn `--reload` to avoid log-file restart loops).
 - Interactive run: `cd "/Users/tristanklaasse/javis 2.0" && ./scripts/start.sh` (reload enabled in that mode).
-- Python: **system Python 3.9** (not the `.venv` 3.12). Keep code 3.9-compatible (`from __future__ import annotations`).
+- Python: **`.venv/bin/python`** = Python 3.9.6 (venv built from system `python3`; there is no `.venv` 3.12 — earlier memory was misleading). Keep code 3.9-compatible (`from __future__ import annotations`).
 - Logs: `~/Library/Logs/jarvis.out.log`, `~/Library/Logs/jarvis.err.log`.
 - Manage: `launchctl unload/load -w <plist>`, `launchctl list | grep jarvis`.
 - Restart after code change: `launchctl kickstart -k gui/$(id -u)/com.jarvis.server` — causes brief downtime that also affects the customer offerte page, so **ask Tristan first**.

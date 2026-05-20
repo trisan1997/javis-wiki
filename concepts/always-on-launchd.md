@@ -47,7 +47,11 @@ constrains LaunchDaemon installation.
 
 ## Python gotcha
 
-System Python **3.9** is used by the loaded service (not the `.venv` 3.12).
-Keep service-loaded code 3.9-compatible (`from __future__ import annotations`).
+The loaded service uses **`.venv/bin/python`**, which is **Python 3.9.6** —
+`scripts/start.sh` creates the venv with `python3 -m venv .venv`, and on this
+Mac `python3` is `/Library/Developer/CommandLineTools/usr/bin/python3` =
+3.9.6. There is no `.venv` 3.12 (that was either abandoned or never existed —
+earlier memory was misleading). Keep service-loaded code 3.9-compatible
+(`from __future__ import annotations`).
 
 <!-- Seed source: Claude Code memories `jarvis-startup`, `virtueel-kantoor`. -->

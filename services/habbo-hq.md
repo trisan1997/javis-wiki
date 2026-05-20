@@ -65,7 +65,7 @@ assets). Started **2026-05-17**.
 
 ## Deploy gotcha
 
-Live server runs via launchd (`com.jarvis.server`, `JARVIS_NO_RELOAD=1`, system Python **3.9**). Code changes only go live after `launchctl kickstart -k gui/$(id -u)/com.jarvis.server` — brief downtime affects the customer offerte page too, so **ask Tristan first**. Keep `src/office.py` 3.9-compatible.
+Live server runs via launchd (`com.jarvis.server`, `JARVIS_NO_RELOAD=1`, **`.venv/bin/python`** = Python 3.9.6). Code changes only go live after `launchctl kickstart -k gui/$(id -u)/com.jarvis.server` — brief downtime affects the customer offerte page too, so **ask Tristan first**. Keep `src/office.py` 3.9-compatible.
 
 ## Related
 
