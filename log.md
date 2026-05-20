@@ -72,6 +72,29 @@ wiki facts (`JARVIS_NO_RELOAD`, `kickstart`, `.venv`, `3.9`, `launchctl`,
 training data. Summary pushed to Tristan via `send_telegram`. Phase 1 is
 functionally complete.
 
+## [2026-05-20] ingest | Phase 3.5 shipped — Tristan + Valentina commanderen het dev-team (met interruptie)
+Single-task-at-a-time model: nieuwe `devteam.submit()` cancelt eerst alle nog-
+lopende taken via coöperatieve cancellation (per-task `threading.Event` +
+`_check_cancel(tid)` op 3 punten in `_run()`: start, na plan, vóór elke file).
+Geannuleerde taken krijgen `status="geannuleerd"`. + `list_recent`, `current_id`,
+`cancel_current` helpers.
+
+**Tristan via Telegram** (chat 7855958540): `dev: <opdracht>` → submit
+(onderbreekt lopende), `dev list`, `dev status [<id>]`, `dev stop`.
+`apply <id>` blijft exclusief Tristan (downtime affect customer offerte-pagina).
+
+**Valentina via LLM-tools** (voice-gated; Jarvis/Zoë/Sara zien ze niet):
+`submit_dev_task`, `list_dev_tasks`, `get_dev_task_status`, `cancel_current_dev_task`.
+Nieuwe lijst `tools.VALENTINA_TOOLS = TOOLS + _DEVTEAM_VALENTINA_TOOLS`. Chat-
+dispatch en `_tg_run_agent` dispatchen `voice == "valentina"` → VALENTINA_TOOLS.
+
+**Voice-routing fix**: `_tg_voice_for("valentina")` returnt nu echt `"valentina"`
+(was `"zoe"`). Telegram-histories ook gescheiden (`tg-valentina` vs `tg-zoe`).
+Label-map split: `zoe → "Zoë"`, `valentina → "Valentina"`. Heeft als
+neveneffect dat Valentina/Zoë nu echt twee aparte agents zijn in Telegram
+(zelfde prompt-body via characters.py else-branch, maar verschillende voice +
+journal + tools). Zie [[habbo-hq]] sectie "Commando-pijplijn".
+
 ## [2026-05-20] ingest | Phase 3 shipped — agent-staged wiki proposals + dual approval
 New `proposals/` directory. Agents call `propose_wiki_edit(slug, heading,
 content, rationale)` to stage an `append_section` proposal (v1 — no replace

@@ -42,6 +42,32 @@ assets). Started **2026-05-17**.
 - `autonomy._steve_dev()` ~every 40 min — autonomously creates a changeset and pings Tristan via Telegram with the task-id.
 - `_tg_poller` recognises **"apply &lt;id&gt;"** / **"skip &lt;id&gt;"** (Tristan's chat = authorization) → `devteam.apply`. UI button not built yet (Telegram path works).
 
+### Commando-pijplijn (shared-brain Phase 3.5, live 2026-05-20)
+
+Single-task-at-a-time model. `devteam.submit()` cancelt eerst alle nog-lopende
+taken (coöperatieve cancellation via per-task `threading.Event`; `_run()` checkt
+op 3 punten: start, na plan, vóór elke file-write). Geannuleerde taken krijgen
+`status="geannuleerd"`. Hulp-functies: `devteam.list_recent(n)`, `current_id()`,
+`cancel_current()`.
+
+**Tristan via Telegram** (chat `7855958540`, alle commando's case-insensitive):
+- `dev: <opdracht>` of `dev <opdracht>` — submit (onderbreekt lopende taak), reply met task-id.
+- `dev list` — 10 recente taken met status.
+- `dev status` — status van actieve taak. `dev status <id>` — specifieke taak.
+- `dev stop` — expliciet huidige taak stoppen (zonder vervangende opdracht).
+- `apply <id>` — live promotie (bestond al, blijft **Tristan-only** — `apply_dev_task` is bewust GEEN tool voor Valentina want het raakt de customer offerte-pagina).
+
+**Valentina via LLM-tools** (voice-gated; Jarvis/Zoë/Sara zien ze niet):
+- `submit_dev_task(description)` — idem semantiek als Tristan's `dev:`.
+- `list_dev_tasks(limit)`, `get_dev_task_status(task_id)`, `cancel_current_dev_task()`.
+- Lijst: `tools.VALENTINA_TOOLS = TOOLS + _DEVTEAM_VALENTINA_TOOLS`.
+- Chat-dispatch: `voice == "valentina"` → `VALENTINA_TOOLS` (in `/api/chat` én `_tg_run_agent`).
+
+**Voice-routing wijziging (let op)**: `_tg_voice_for("valentina")` returnt nu echt
+`"valentina"` (was `"zoe"`). Telegram-histories ook gescheiden (`tg-valentina`
+vs `tg-zoe`). Label-map split: `zoe → "Zoë"`, `valentina → "Valentina"`. Adres
+"Valentina, …" → krijgt dev-team tools; "Zoë, …" → niet.
+
 ## Director / proposals (7e — live)
 
 - Director token from `/api/hq/auth`; `/api/hq/devtask` + `/api/hq/proposal(s)` server-side behind `is_director(token)`.
