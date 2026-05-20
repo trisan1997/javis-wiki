@@ -127,6 +127,28 @@ Approval has THREE channels, all applying the same atomic write:
 approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
 Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.
 
+## [2026-05-20] ingest | Phase 6 shipped — wiki lint (Karpathy triumvirate compleet)
+Sluit het Karpathy ingest→query→lint trio. Nieuwe Valentina-only tool
+`lint_wiki(stale_days=30)` voert drie statische checks uit (geen LLM-call):
+- **Orphans**: pagina's zonder inbound wikilinks (excl. auto-maintained
+  index/log/README).
+- **Missing concepts**: `[[slug]]`-refs waarvoor geen pagina bestaat.
+- **Stale**: pagina's met `updated:` ouder dan threshold EN minimaal 1
+  inbound link (stale orphans worden niet dubbel geflagd).
+
+Implementatie: `wiki.lint_wiki()` returnt structured dict; `format_lint_
+report()` formatteert naar markdown voor Telegram/agent-consumption.
+Resolver matched zowel full-slugs ('concepts/foo') als bare stems ('foo') —
+ambiguous stems → missing.
+
+Baseline op huidige wiki: 16 pagina's, 97 links, **0 orphans / 0 missing /
+0 stale** — gezonde startstand. Pas zichtbaar nut als wiki organisch groeit
+via proposal-edits.
+
+Bewust uit v1: contradictie-detectie (vereist LLM-scan over alle pagina's,
+duurder + noisy) en coverage-gap analyse (concepten herhaald in journals
+zonder eigen pagina). Beide kandidaten voor Phase 6.5 als echt nut blijkt.
+
 ## [2026-05-20] ingest | Phase 5 shipped — expanded change_types (new_page + replace_section)
 Heffen van de append-only beperking. `propose_wiki_edit` ondersteunt nu drie
 `change_type`s: `append_section` (zoals voorheen), `new_page` (creëer nieuwe
