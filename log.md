@@ -307,3 +307,9 @@ Proposer: steve_jobs. Approver: tristan-telegram. sectie toegevoegd (1963 chars)
 
 ## [2026-05-20] wiki-apply | proposal 659929e18a7d (append_section) → agents/steve_jobs
 Proposer: steve_jobs. Approver: tristan-telegram. sectie toegevoegd (3250 chars). (backup: .bak/agents-steve_jobs.md.20260520T213429.bak)
+
+## [2026-05-20] wiki-reject | proposal 41859de44fa9
+Proposer: steve_jobs. Approver: tristan. Reden: outdated — Valentina/Zoë bugs reeds gefixt via Phase 2.5 (valentina alias in characters.load()). Steve las log.md niet vóór hij voorstelde..
+
+## [2026-05-20] wiki-reject | proposal 48897c3a8c36
+Proposer: steve_jobs. Approver: tristan. Reden: outdated — duplicate van 41859de44fa9; zelfde bugs zijn al gefixt..
