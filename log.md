@@ -127,6 +127,35 @@ Approval has THREE channels, all applying the same atomic write:
 approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
 Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.
 
+## [2026-05-20] ingest | Phase 7 shipped — auto-distill cron (wiki groeit autonoom)
+Verwijdert de laatste handmatige trigger uit de pipeline. Achtergrond-worker
+in `src/autonomy.py` plant dagelijks **04:00 lokaal** een Valentina-led
+distillatie via dezelfde code-pad als Phase 4 (`tools.execute(
+"distill_recent_journals", {window_hours: 24, max_proposals: 3})`).
+Bevat: `_AUTO_DISTILL_ENABLED` env-gate (default 1), `_next_04am()`
+timestamp-helper, `_distill_run()` wrapper, en een nieuwe `_next_distill`
+slot in de bestaande `_loop()` if-elif-keten (hoogste prioriteit boven
+andere beats).
+
+Notificatie-beleid: stil bij 0 voorstellen, Telegram-bericht aan Tristan
+met `wiki apply <id>` knoppen zodra er minstens 1 voorstel gestaged is.
+Detectie via regex op het 12-hex-id patroon in de distill-output.
+
+Restart-veilig: `_next_distill` wordt fresh berekend bij elke
+`_guarded_loop()` herstart. Geen state-file nodig. Bij restart binnen het
+04:00-window slaat distillatie die dag over (acceptabel — niet
+tijdkritisch). Bij Anthropic-fout: try/except in `_distill_run`, log naar
+`logs/autonomy.log`, geen crash van de autonomy thread.
+
+Bewust GEEN nieuwe agent-rol/identiteit ingevoerd — distill draait als
+Valentina via `active_voice("valentina")`. Sluit aan op haar bestaande
+"waarnemend directeur"-positie als coördinator. Steve/Nick/Siebert blijven
+buiten de wiki-loop (zoals sinds Phase 2).
+
+Eerstvolgende run: 2026-05-21 04:00 (geverifieerd in autonomy.log na
+kickstart). Pas zichtbaar nut zodra agents over meerdere dagen journals
+accumuleren. ~$0.20-0.50/dag aan Sonnet-input tokens.
+
 ## [2026-05-20] ingest | Phase 6 shipped — wiki lint (Karpathy triumvirate compleet)
 Sluit het Karpathy ingest→query→lint trio. Nieuwe Valentina-only tool
 `lint_wiki(stale_days=30)` voert drie statische checks uit (geen LLM-call):
