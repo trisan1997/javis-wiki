@@ -345,3 +345,48 @@ mark_paid persisteert correct. Live na kickstart (PID 77604).
 
 Niet in deze turn: publieke `/api/public/offerte` route, statisch frontend
 voor one.com, Tailscale Funnel enablen. Backend is klaar om die laag te dragen.
+
+## [2026-05-20] ingest | Prompt 4 (frontend) — admin UI + one.com bundle + publiek chat endpoint
+Frontend voor de publieke offerte/facturatie flow op thehandycompany.be is klaar.
+
+**Nieuwe backend endpoints in src/server.py:**
+- `POST /api/public/chat` — auth-vrij chat endpoint voor klanten. Voice
+  forced op Jarvis (de sales-agent), session-id krijgt automatisch `pub-`
+  prefix zodat publieke gesprekken niet kruisen met Tristan-side chats.
+  Volledige tool-use loop (create_and_send_quote werkt). Smoke-getest:
+  Jarvis antwoordt correct met zijn OFFERTESTROOM-prompt zonder Basic auth.
+- `GET /admin` — serveert `static/admin.html`. Achter BasicAuth (gewone
+  app-auth), daarna doet de UI zelf een director-token login.
+
+**static/admin.html** (~430 lines vanilla JS/CSS, single-page):
+- Login via OFFICE_PASSPHRASE → director-token in localStorage
+- Twee tabs: Offertes + Facturen
+- Lijst-view + detail-view met inline edit-formulier
+- Action-knoppen per item: "Maak factuur" (vanuit quote), "Markeer betaald",
+  "Geaccepteerd"/"Afgewezen", "Wijzigingen opslaan"
+- Status-pills met kleur per status
+- Linkt naar HTML-snapshot van facturen (browser print-to-PDF)
+- Toast-notificaties bij success/error
+
+**frontend/public/ bundle** (klaar voor FTP-upload naar one.com):
+- `index.html` — landing page + offerte-chat in één pagina, sticky topbar,
+  hero met CTA, contact-sectie, footer
+- `style.css` — branding (oranje accent #e8772a, donker contrast)
+- `app.js` — chat-logica via `fetch()` naar Tailscale Funnel URL. Session-id
+  bewaard in localStorage zodat klanten hun gesprek kunnen voortzetten.
+  IntersectionObserver focus inputveld bij scroll-into-view.
+- `README.md` — deploy-instructies (Tailscale Funnel enable, FTP-upload,
+  lokaal testen, architectuur-diagram)
+
+**Stap die Tristan ZELF moet doen (eenmalig):**
+```bash
+tailscale funnel --bg 443
+```
+Dit exposeert de Mac-backend publiek op port 443 via de tail5dedea.ts.net
+hostname. Vereist Funnel-rechten in de Tailscale admin console.
+
+Daarna: drie files van `frontend/public/` uploaden naar one.com via hun
+File Manager (vervangt het default `index.html`).
+
+**Live geverifieerd:** kickstart schone startup (no errors), `/api/public/chat`
+gaf 200 + Jarvis-reply, `/admin` gaf 401 zonder BasicAuth (correct gated).
