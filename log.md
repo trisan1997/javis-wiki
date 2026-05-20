@@ -71,3 +71,17 @@ wiki facts (`JARVIS_NO_RELOAD`, `kickstart`, `.venv`, `3.9`, `launchctl`,
 ("3.9.6 from system python3"), confirming he's reading the current wiki, not
 training data. Summary pushed to Tristan via `send_telegram`. Phase 1 is
 functionally complete.
+
+## [2026-05-20] ingest | Phase 3 shipped — agent-staged wiki proposals + dual approval
+New `proposals/` directory. Agents call `propose_wiki_edit(slug, heading,
+content, rationale)` to stage an `append_section` proposal (v1 — no replace
+or delete). Target whitelist enforced server-side in `wiki._validate_proposal
+_target`: services/concepts/decisions/incidents free for any agent;
+`agents/<self>` self-only; everything else blocked (CLAUDE.md, index.md,
+log.md, raw/, journal/, proposals/, .obsidian/, other agents' pages).
+Approval has THREE channels, all applying the same atomic write:
+(1) Tristan via HQ panel (`GET/POST /api/hq/wiki-proposal*`, director-token);
+(2) Tristan via Telegram (`wiki apply <id>` / `wiki skip <id>`);
+(3) Valentina via `approve_wiki_proposal` tool (voice-gated; cannot self-
+approve — `apply_proposal` refuses if `approver == proposer == "valentina"`).
+Schema + Telegram + tool routes all smoke-tested green; pre-kickstart.

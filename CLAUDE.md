@@ -18,6 +18,7 @@ Obsidian.
 - `concepts/` — cross-cutting topics (`always-on-launchd`, `voice-tts`, `tailscale-access`, …). The "why" and "how it works" pieces that span multiple services.
 - `agents/` — one page per agent (`jarvis`, `zoe`, `sara`, `valentina`, `steve_jobs`, `nick`, `siebert`, …). Persistent self-knowledge: identity, voice, tools, preloaded context, current focus. Agents will read their own page as part of every turn (Phase 1 of shared-brain).
 - `journal/` — append-only daily journals, one file per agent per day. Filename: `YYYY-MM-DD-<voice>.md`. Replaces the in-memory `tg-<voice>` histories that die on server restart (Phase 2 of shared-brain).
+- `proposals/` — agent-staged wiki-edit proposals awaiting approval (Phase 3). Filename: `<12-hex-id>.md`. v1 = `append_section` only. Approved via Tristan (panel + Telegram) or Valentina (LLM tool, can't self-approve). See `proposals/README.md`.
 - `incidents/` — post-mortems. Filename: `YYYY-MM-DD-short-slug.md`.
 - `decisions/` — ADRs. Filename: `YYYY-MM-DD-decision-slug.md`. Title, context, decision, consequences.
 - `raw/` — source material. Drop new sources here before ingesting. Keep filenames descriptive (`2026-05-15-com.jarvis.server.plist`).
