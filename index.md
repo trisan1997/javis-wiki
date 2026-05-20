@@ -4,13 +4,19 @@ One-line catalog of every page in this wiki. Grouped by directory. Updated on
 every ingest. The maintainer reads this first when answering queries.
 
 ## Agents
-- [[jarvis]] — primary butler; `nl-BE-ArnaudNeural`, rate `-10%`; **shared-brain: read + journal**
-- [[zoe]] — assistant voice; `nl-BE-DenaNeural`, rate `+0%`; **shared-brain: read + journal** (shares prompt with [[valentina]])
-- [[sara]] — mail-management agent; voice `sara`; **shared-brain: read + journal**
-- [[valentina]] — waarnemend directeur, orchestrates everyone; **shared-brain: read + journal**
-- [[steve_jobs]] — dev-team lead, autonomy-only (no tools, no preload)
-- [[nick]] — dev-team developer, autonomy-only
-- [[siebert]] — dev-team developer, autonomy-only
+- [[jarvis]] — primary butler; `nl-BE-ArnaudNeural`; sales/offertes
+- [[zoe]] — assistant voice (shares prompt with [[valentina]])
+- [[sara]] — mail-management agent
+- [[valentina]] — waarnemend directeur, orchestrates everyone
+- [[steve_jobs]] — dev-team lead (autonomy + Telegram tool-use)
+- [[nick]], [[siebert]] — dev-team developers
+- **Prompt 3 nieuw — adverteam (Marketing):**
+  - [[brand_lead]] (Marlies) — brand lead, kan Pim/Lotte delegeren
+  - [[creative]] (Pim) — copy + visuele ideeën
+  - [[media_buyer]] (Lotte) — kanaal-budgetten, ROI
+- **Prompt 3 nieuw — solo-agents:**
+  - [[mario]] (Mario Belastingvrij) — louche boekhouder
+  - [[victor]] (Victor Strateeg) — strategisch adviseur
 
 ## Services
 - [[jarvis-server]] — always-on launchd FastAPI service on `:8080`; Tailscale-accessible; system Python 3.9

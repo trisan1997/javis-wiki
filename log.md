@@ -301,3 +301,9 @@ Implementatie:
 
 Smoke-test: alle 6 paden (3 happy + 3 edge cases) groen — zie javis-2.0
 commit voor de details.
+
+## [2026-05-20] wiki-apply | proposal 25c11475f24e (append_section) → agents/steve_jobs
+Proposer: steve_jobs. Approver: tristan-telegram. sectie toegevoegd (1963 chars). (backup: .bak/agents-steve_jobs.md.20260520T213120.bak)
+
+## [2026-05-20] wiki-apply | proposal 659929e18a7d (append_section) → agents/steve_jobs
+Proposer: steve_jobs. Approver: tristan-telegram. sectie toegevoegd (3250 chars). (backup: .bak/agents-steve_jobs.md.20260520T213429.bak)
