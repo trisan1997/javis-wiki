@@ -23,3 +23,9 @@ conversations/
 users/
 # gespreksamenvattingen — zelfde klantgegevens als conversations/
 summaries/
+
+# ── Bedrijfsgevoelig: geen persoonsgegevens, wél concurrentievoorsprong ──────
+# leveranciersprijzen en marges
+material-prices/
+# groeistrategie
+growth/
