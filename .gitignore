@@ -21,3 +21,5 @@ quotes/
 conversations/
 # brein-pagina's per gebruiker (personeel, klanten, investeerder)
 users/
+# gespreksamenvattingen — zelfde klantgegevens als conversations/
+summaries/
