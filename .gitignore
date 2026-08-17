@@ -8,3 +8,16 @@
 
 # Wiki backups (created automatically when proposals replace existing content)
 .bak/
+
+# ── Persoonsgegevens: NOOIT naar de remote ────────────────────────────────────
+# Deze mappen stonden buiten de repo omdat niemand ze had toegevoegd, niet
+# omdat iets ze tegenhield. Eén `git add -A` volstond om klantdossiers en
+# persoonlijke breinen op GitHub te zetten — onomkeerbaar. Vandaar expliciet.
+# klantdossiers (naam, adres, e-mail, telefoon)
+customers/
+# offertes: klantgegevens + prijzen
+quotes/
+# gesprekslogs
+conversations/
+# brein-pagina's per gebruiker (personeel, klanten, investeerder)
+users/
