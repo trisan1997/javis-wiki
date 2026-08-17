@@ -2,9 +2,9 @@
 title: Voice — TTS & STT
 type: concept
 status: live
-updated: 2026-05-20
+updated: 2026-08-17
 sources: 0
-tags: [voice, tts, stt, edge-tts, whisper, elevenlabs]
+tags: [voice, tts, stt, edge-tts, whisper, elevenlabs, sara]
 ---
 
 # Voice — TTS & STT
@@ -61,3 +61,40 @@ State as of 2026-05-15 — kept as historical reference.
 - [[habbo-hq]] — per-agent voices live here.
 
 <!-- Seed source: Claude Code memory `jarvis-voice-tts`. -->
+
+
+### Veelgemaakte fouten bij offertes
+
+- **Onderschatting van renovatiekosten**: Bij het opstellen van offertes voor renovatiewerken (bijv. projecttype 'renovatie') wordt de prijs soms te laag ingeschat. Er is een structurele correctiefactor van ongeveer +14% nodig ten opzichte van de initiële schatting om de werkelijke kostprijs te dekken.
+- **Actie**: Raadpleeg altijd `get_construction_prices` en valideer tegen `services.json` voordat een offerte wordt definitief gemaakt, specifiek voor dit werktype.
+
+
+## Veelgemaakte fouten bij prijsbepaling
+
+Bij het genereren van offertes voor renovatiewerken zijn extreme afwijkingen in de initiële prijsberekening waargenomen (zowel >90% te hoog als >1000% te laag).
+
+**Oorzaak:** Het negeren van de centrale bronnen `get_construction_prices` en `services.json` ten gunste van hallucinaties of verouderde interne schattingen.
+
+**Correctieve actie:**
+- Altijd eerst `get_construction_prices` raadplegen voor actuele markttarieven.
+- Verifieer het eindbedrag tegen de limieten en eenheden in `services.json` voordat de offerte naar de klant gaat.
+- Bij twijfel: vraag om menselijke validatie voordat de PDF wordt gegenereerd.
+
+
+## Beperkingen en alternatieven
+
+- **ElevenLabs**: Dit platform is verlaten als primaire TTS-engine vanwege strikte quota-beperkingen die de continuïteit van de dienst bedreigden.
+- **Huidige stack**: De voorkeur gaat uit naar `edge-tts` (neural, gratis) voor tekst-naar-spraak en `faster-whisper` (offline) voor spraak-naar-tekst om onafhankelijkheid van externe API-limieten te garanderen.
+
+
+## Mail-agents hebben deze stack niet nodig
+
+Agents die met e-mailtekst werken — [[sara]] voorop — hebben **geen**
+afhankelijkheid van de spraakstack. Hun pijplijn (`src/routing.py`,
+`src/office.py`) roept `/api/speak` noch `/api/transcribe` aan; geverifieerd
+op 2026-08-17.
+
+Dat is het vermelden waard omdat de verwarring een concrete kost heeft: wie
+aanneemt dat élke agent audio nodig heeft, gaat audio-pipelines activeren voor
+taken die puur tekst zijn. Alleen als er expliciet om spraakuitvoer van
+mailinhoud gevraagd wordt, komt `/api/speak` in beeld.

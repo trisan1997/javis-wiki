@@ -390,3 +390,117 @@ File Manager (vervangt het default `index.html`).
 
 **Live geverifieerd:** kickstart schone startup (no errors), `/api/public/chat`
 gaf 200 + Jarvis-reply, `/admin` gaf 401 zonder BasicAuth (correct gated).
+
+## [2026-05-21] wiki-apply | proposal 907d621fc5c7 (new_page) → concepts/agent-memory-protocol
+Proposer: valentina. Approver: tristan-telegram. nieuwe pagina aangemaakt (2102 chars).
+
+## [2026-06-02] wiki-apply | proposal 230f165c5f50 (new_page) → incidents/2026-05-20-duplicate-mail-processing
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (1628 chars).
+
+## [2026-06-02] wiki-apply | proposal 28e5adbbbf8a (new_page) → incidents/pricing-discrepancies-june-2026
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (1181 chars).
+
+## [2026-06-02] wiki-apply | proposal 3b7671b9fea1 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (1038 chars). (backup: .bak/services-sara-mail-agent.md.20260602T024441.bak)
+
+## [2026-06-02] wiki-apply | proposal 834eed877dc4 (new_page) → concepts/upsell-tracking
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (714 chars).
+
+## [2026-06-02] wiki-apply | proposal 9d7f945ab2aa (new_page) → concepts/quote-pricing
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (1303 chars).
+
+## [2026-06-02] wiki-reject | proposal 9dec374e10d2
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-06-02] wiki-reject | proposal 42c0917668bc
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-06-02] wiki-reject | proposal 987bb3d2e6d6
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-06-02] wiki-reject | proposal 9f6c5d126a45
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-06-02] wiki-apply | proposal b6f45d287bf9 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (1160 chars). (backup: .bak/services-sara-mail-agent.md.20260602T024716.bak)
+
+## [2026-06-02] wiki-reject | proposal d3014bd16d27
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-06-02] wiki-apply | proposal fa4f72bf71da (append_section) → services/jarvis-server
+Proposer: valentina. Approver: tristan. sectie toegevoegd (593 chars). (backup: .bak/services-jarvis-server.md.20260602T024749.bak)
+
+## [2026-06-02] wiki-apply | proposal fa9705d4808f (replace_section) → agents/jarvis
+Proposer: jarvis. Approver: tristan. sectie 'Tools' vervangen (7 regels → 26 regels). (backup: .bak/agents-jarvis.md.20260602T024803.bak)
+
+## [2026-07-13] wiki-apply | proposal 0f35aaee0578 (new_page) → incidents/sara-mail-sync-issue
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (1369 chars).
+
+## [2026-07-13] wiki-apply | proposal 101db71438f2 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (591 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154635.bak)
+
+## [2026-07-13] wiki-apply | proposal 20170cc76854 (new_page) → incidents/mail-sync-delete-failure
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (1616 chars).
+
+## [2026-07-13] wiki-apply | proposal 4d94d9b4e8aa (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (797 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154638.bak)
+
+## [2026-07-13] wiki-apply | proposal 669687af7063 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (798 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154639.bak)
+
+## [2026-07-13] wiki-apply | proposal 75ad84516f89 (append_section) → concepts/voice-tts
+Proposer: valentina. Approver: tristan. sectie toegevoegd (506 chars). (backup: .bak/concepts-voice-tts.md.20260713T154640.bak)
+
+## [2026-07-13] wiki-apply | proposal 89265cc806ca (append_section) → concepts/voice-tts
+Proposer: valentina. Approver: tristan. sectie toegevoegd (659 chars). (backup: .bak/concepts-voice-tts.md.20260713T154641.bak)
+
+## [2026-07-13] wiki-apply | proposal 923c1398bbeb (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (916 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154642.bak)
+
+## [2026-07-13] wiki-apply | proposal 980aa5f595c6 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (803 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154643.bak)
+
+## [2026-07-13] wiki-apply | proposal 9877dec0d80f (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (739 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154644.bak)
+
+## [2026-07-13] wiki-apply | proposal a936cf46170a (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (862 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154652.bak)
+
+## [2026-07-13] wiki-apply | proposal cff87c232877 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (770 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154654.bak)
+
+## [2026-07-13] wiki-apply | proposal d90f897fb534 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (767 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154655.bak)
+
+## [2026-07-13] wiki-apply | proposal df6eab026a64 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (533 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154657.bak)
+
+## [2026-07-13] wiki-apply | proposal f1d1d22e5bfa (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (664 chars). (backup: .bak/services-sara-mail-agent.md.20260713T154706.bak)
+
+## [2026-07-13] wiki-reject | proposal ee6636f82adb
+Proposer: valentina. Approver: tristan. Reden: (geen).
+
+## [2026-07-13] wiki-reject | proposal a56c36c10c0f
+Proposer: valentina. Approver: tristan. Reden: bug.
+
+## [2026-07-14] wiki-apply | proposal 00aa06a348e4 (append_section) → concepts/voice-tts
+Proposer: valentina. Approver: tristan. sectie toegevoegd (391 chars). (backup: .bak/concepts-voice-tts.md.20260714T145009.bak)
+
+## [2026-07-14] wiki-apply | proposal a813f8d43b0f (new_page) → incidents/offerte-prijscalculatie-renovatie
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (881 chars).
+
+## [2026-07-14] wiki-apply | proposal d66048659a12 (append_section) → services/jarvis-server
+Proposer: valentina. Approver: tristan. sectie toegevoegd (530 chars). (backup: .bak/services-jarvis-server.md.20260714T145012.bak)
+
+## [2026-07-16] wiki-apply | proposal 8fa0a6e3487a (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (489 chars). (backup: .bak/services-sara-mail-agent.md.20260716T020054.bak)
+
+## [2026-07-20] wiki-apply | proposal 37adfdd98d2c (new_page) → concepts/mail-handling-strategy
+Proposer: valentina. Approver: tristan. nieuwe pagina aangemaakt (946 chars).
+
+## [2026-08-17] update | Voice — TTS & STT
+Sectie toegevoegd: mail-agents ([[sara]]) hebben geen afhankelijkheid van de
+spraakstack — geverifieerd dat `src/routing.py` en `src/office.py` geen
+`/api/speak` of `/api/transcribe` aanroepen. Voorkomt dat er audio-pipelines
+worden opgetuigd voor tekst-only taken.
