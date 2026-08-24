@@ -55,3 +55,17 @@ dev-team), and the [[habbo-hq|virtual office]] at `/`.
 - [[sara-mail-agent]], [[habbo-hq]] — major subsystems running inside this server.
 
 <!-- Seed source: Claude Code memory `jarvis-startup` (2026-05-15 snapshot). Verify against current code before quoting as fact. -->
+
+
+### Known Pitfalls in Offer Generation
+
+Tijdens het genereren van offertes voor renovatieprojecten treden regelmatig pricing-fouten op:
+- **Risico**: Het handmatig inschatten van totalen leidt vaak tot afwijkingen van 30% tot 60% ten opzichte van de werkelijke kostprijs.
+- **Preventie**: De agent moet verplicht de functie `get_construction_prices` aanroepen en de waarden in `services.json` verifiëren voordat een eindtotaal aan de gebruiker wordt gepresenteerd.
+- **Glaswanden**: Let op dat de standaardprijs voor glaswanden is verhoogd naar €300/m². Oude referenties (€250) zijn verouderd.
+
+
+## Veelgemaakte fouten bij offertes
+
+- **Onderschatting renovatieprojecten**: Bij het opstellen van offertes voor renovatiewerkzaamheden wordt de prijs vaak te laag ingeschat. Er dient standaard een correctiefactor van ongeveer +14% toegepast te worden ten opzichte van de basisprijzen in `get_construction_prices` of `services.json`.
+- **Controleprocedure**: Voor elke nieuwe offerte van het type 'renovatie' moet de berekende prijs expliciet gecontroleerd worden tegen historische data voordat deze naar de klant wordt gestuurd.

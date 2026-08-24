@@ -23,11 +23,31 @@ Lives in [[jarvis-server]] (`src/server.py`).
 <!-- TODO file:line — pending codebase scout. -->
 
 ## Tools
-<!-- TODO confirm authoritative list from src/. Memory mentions: send_telegram, mail/calendar via tools.execute(). -->
 
-### Phase 1 additions (shared brain — Jarvis only initially)
-- `read_wiki_page(slug)` — read any wiki page by slug, e.g. `services/jarvis-server`.
-- `search_wiki(query)` — keyword search across wiki pages, returns ranked excerpts.
+> ⚠️ **OPEN BUG (prioriteit dev-team):** Onderstaande lijst is onvolledig — de autoritatieve tool-lijst uit `src/server.py` is nog nooit bevestigd. Dev-team moet een codebase-scout uitvoeren en deze sectie bijwerken.
+
+### Bevestigd operationeel (via prompt-definitie)
+- `send_telegram` — push-notificaties naar Tristan
+- `add_calendar_event` / `get_calendar_events` / `list_calendars` — agenda via iCloud
+- `add_reminder` — herinneringen via iCloud
+- `email_to_office` — mail naar Info@thehandycompany.be
+- `save_client_contact` / `lookup_client` — klantenbeheer Apple Contacten
+- `get_construction_prices` — actuele bouwprijzen BE/ES
+- `create_and_send_quote` — offerte genereren + versturen
+- `web_search` — actuele webzoekopdrachten
+- `get_vrt_news` — nieuwsberichten VRT NWS
+- `read_wiki_page(slug)` — wiki pagina ophalen
+- `search_wiki(query)` — zoeken in wiki
+- `propose_wiki_edit` — wiki-wijziging voorstellen
+- `approve_wiki_proposal` — voorstel goedkeuren (Valentina-only)
+- `flag_mistake` — fout registreren in dagjournaal
+- `journal_note` — observatie bewaren over restart heen
+- `consult_teammate` — collega raadplegen voor onomkeerbare acties
+- `send_telegram_document` — bestand sturen via Telegram
+
+### Nog te bevestigen door dev-team
+- `TODO:` exacte file:line-locatie van Jarvis-agent in `src/server.py`
+- `TODO:` controleer of er tools zijn geregistreerd in `src/` maar niet in de prompt (of omgekeerd)
 
 ## Preload (hybrid context)
 Injected into Jarvis's system prompt every turn:

@@ -98,3 +98,19 @@ Dat is het vermelden waard omdat de verwarring een concrete kost heeft: wie
 aanneemt dat élke agent audio nodig heeft, gaat audio-pipelines activeren voor
 taken die puur tekst zijn. Alleen als er expliciet om spraakuitvoer van
 mailinhoud gevraagd wordt, komt `/api/speak` in beeld.
+
+
+## Veelvoorkomende valkuilen bij e-mailverwerking
+
+- **Security-mails van externe accounts**: Mails zoals Apple 'Find My' of iCloud-login waarschuwingen komen soms terug in `read_emails` maar kunnen niet verwijderd of gemarkeerd worden door de standaard tools. Dit wijst erop dat ze niet in de primaire zakelijke inbox staan, maar in een gekoppeld persoonlijk account (bijv. Gmail) of een andere map (Spam/Archief).
+  - *Oplossing*: Gebruik `search_emails` specifiek per account om de bron te lokaliseren voordat verwijdering geprobeerd wordt. Forceer geen delete-actie als de tool 'niet gevonden' meldt om eindeloze loops te voorkomen.
+- **CRM-leads intact laten**: Leads van specifieke bronnen (zoals Bobex) moeten bewust in de INBOX gelaten worden voor ophaling via het CRM-systeem door de gebruiker. Automatische verwerking of archivering hiervan vermijden.
+
+
+### ### Alternatieven en afwegingen
+**ElevenLabs (Verworpen):**
+Eerder overwogen voor hoogwaardige stemmen, maar afgezien vanwege strikte quota-beperkingen die onvoldoende schaalbaarheid boden voor continue 'always-on' diensten. De kosten-batenverhouding was ongunstig vergeleken met de gratis, offline beschikbare opties.
+
+**Huidige Standaard:**
+- **TTS:** `edge-tts` (Neural voices, gratis, geen quota).
+- **STT:** `faster-whisper` (Lokaal draaiend, privacy-vriendelijk).

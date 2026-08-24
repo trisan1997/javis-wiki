@@ -29,3 +29,16 @@ summaries/
 material-prices/
 # groeistrategie
 growth/
+
+# ── Toegevoegd 2026-08-24: mappen die na de regel hierboven zijn ontstaan ─────
+# Dezelfde redenering, nieuwere mappen. De repo staat publiek; alles hieronder
+# bevat persoonsgegevens of leveranciersprijzen en hoort er niet in.
+# dagjournaals van de agents: klantnamen, personeelszaken, medische details
+journal/*
+!journal/README.md
+# leveranciersprijzen — spiegelbeeld van material-prices/
+suppliers/
+# facturen: klantnaam, adres, e-mail, bedragen
+invoices/
+# per-agent brein: trainingsdata die uit growth/ en conversations/ citeert
+agents/*/
