@@ -504,3 +504,40 @@ Sectie toegevoegd: mail-agents ([[sara]]) hebben geen afhankelijkheid van de
 spraakstack — geverifieerd dat `src/routing.py` en `src/office.py` geen
 `/api/speak` of `/api/transcribe` aanroepen. Voorkomt dat er audio-pipelines
 worden opgetuigd voor tekst-only taken.
+
+## [2026-08-17] wiki-reject | proposal 6d787fd553e9
+Proposer: valentina. Approver: tristan. Reden: gedaan met claude.
+
+## [2026-08-17] wiki-apply | proposal 6fcd73040309 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (842 chars). (backup: .bak/services-sara-mail-agent.md.20260817T193834.bak)
+
+## [2026-08-17] wiki-apply | proposal 70f1a0f4c235 (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (841 chars). (backup: .bak/services-sara-mail-agent.md.20260817T193849.bak)
+
+## [2026-08-17] wiki-apply | proposal 80b7394abc81 (append_section) → concepts/voice-tts
+Proposer: valentina. Approver: tristan. sectie toegevoegd (861 chars). (backup: .bak/concepts-voice-tts.md.20260817T193910.bak)
+
+## [2026-08-17] wiki-apply | proposal afc34b9bbd8e (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (696 chars). (backup: .bak/services-sara-mail-agent.md.20260817T194008.bak)
+
+## [2026-08-17] wiki-apply | proposal b4af51423fda (append_section) → concepts/voice-tts
+Proposer: valentina. Approver: tristan. sectie toegevoegd (437 chars). (backup: .bak/concepts-voice-tts.md.20260817T194011.bak)
+
+## [2026-08-17] wiki-apply | proposal cb7acf07b74e (append_section) → services/sara-mail-agent
+Proposer: valentina. Approver: tristan. sectie toegevoegd (800 chars). (backup: .bak/services-sara-mail-agent.md.20260817T194016.bak)
+## [2026-08-18] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-18-134203-claude.md`.
+## [2026-08-18] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-18-191637-claude.md`.
+## [2026-08-20] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-20-092122-claude.md`.
+## [2026-08-24] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-24-073420-claude.md`.
+## [2026-08-24] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-24-091409-claude.md`.
+## [2026-08-24] session-start | (no prompt)
+- Start van sessie; log: `journal/sessions/2026-08-24-101131-claude.md`.
+## [2026-08-24] research | Politieke partij + verzekeringstak
+- Nieuwe ADR `decisions/2026-08-24-politieke-partij-en-verzekeringstak.md` (status: planned).
+- Harde vereisten uitgezocht: vzw ±€450, 400 handtekeningen in Limburg, verkiezingen 2029/2030; FSMA-inschrijving + 15u bijscholing, met nevenverzekeringstussenpersoon (3u) als lichtere opstap.
+- Aanbeveling: verzekering eerst. Drie open vragen wachten op Tristan.

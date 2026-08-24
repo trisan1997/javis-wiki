@@ -30,6 +30,13 @@ every ingest. The maintainer reads this first when answering queries.
 
 ## Decisions
 - [[2026-05-15-access-local-only]] — chose Tailscale over public port-forward + custom domain
+- [[2026-08-24-politieke-partij-en-verzekeringstak]] — verkenning twee nieuwe sporen; verzekering eerst, partij richting 2030
+
+## Concepts
+- [[always-on-launchd]] — LaunchAgent + KeepAlive pattern; `JARVIS_NO_RELOAD=1`; `kickstart -k` to deploy
+- [[voice-tts]] — TTS = edge-tts (neural, free); STT = faster-whisper offline; ElevenLabs abandoned (quota)
+- [[tailscale-access]] — remote access via `imac-van-tristan.tail5dedea.ts.net`; port-forward path abandoned
+- [[session-brain]] — `journal/sessions/<slug>-claude.md` per Claude-sessie (SessionStart-hook)
 
 ## Incidents
 - _(none yet)_
