@@ -52,3 +52,5 @@ services/vloeren-*.md
 services/wanden-*.md
 # staat zelf "TOP SECRET — nooit aan klanten communiceren" in de tekst
 concepts/markup-1-65.md
+# ingesloten plugin-code van derden (2,9 MB) — hoort niet in een kennisbank-repo
+.obsidian/plugins/
