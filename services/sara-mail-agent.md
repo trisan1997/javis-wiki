@@ -62,8 +62,8 @@ Sara sorteert inkomende mails aan de hand van een vaste mappenlogica. Onderstaan
 | Boekhouder-replies | `Boekhouder` |
 | Vertuoza-mails | `Vertuoza` |
 | Inkomende klantfacturen (bv. schildersbedrijf) | `inkomen facturen/2026` |
-| Zorggroep Myna — personeelszaken | `Personeel` |
-| Heylen Vastgoed / leads | `Klanten/leads` |
+| Zorginstelling — personeelszaken (ziekteattesten e.d.) | `Personeel` |
+| Vastgoedpartner / leads | `Klanten/leads` |
 | Reclame / commercieel zonder waarde | Definitief verwijderd |
 | Security-meldingen (Facebook, Google) | Definitief verwijderd |
 
