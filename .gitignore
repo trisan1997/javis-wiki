@@ -42,3 +42,13 @@ suppliers/
 invoices/
 # per-agent brein: trainingsdata die uit growth/ en conversations/ citeert
 agents/*/
+# prijsopbouw per dienst (kostprijs + marge) — zelfde categorie als material-prices/
+services/_MOC*.md
+services/andere-*.md
+services/elektriciteit-*.md
+services/keuken-*.md
+services/sanitair-*.md
+services/vloeren-*.md
+services/wanden-*.md
+# staat zelf "TOP SECRET — nooit aan klanten communiceren" in de tekst
+concepts/markup-1-65.md
